@@ -1,0 +1,38 @@
+
+.logo {
+  position: relative;
+  width: 100%;
+}
+
+
+.rectangle {
+  position: absolute;
+  width: 35%;
+  height: 50%;
+  border-radius: 8px;
+  transform: skewX(20deg);
+  transform: skewY(20deg);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.line {
+  height: 2px;
+  background-color: white;
+}
