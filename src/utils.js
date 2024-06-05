@@ -1,4 +1,4 @@
-export async function getData(url) {
+export async function getData(url) { // get dats from url and return the results
     try {
       const response = await fetch(url, {
         method: "GET",
@@ -15,12 +15,14 @@ export async function getData(url) {
     }
   }
 
-
-  export const timeAgo = (date) => {
+  export const timeAgo = (date) => { // format the timestamp from ISO to time ago
+  
     const now = new Date();
     const past = new Date(date);
+    // get the difference in seconds between the current time and  date
     const diffInSeconds = Math.floor((now - past) / 1000);
   
+    // array of time intervals with their seconds values
     const intervals = [
       { label: 'year', seconds: 31536000 },
       { label: 'month', seconds: 2592000 },
@@ -31,19 +33,31 @@ export async function getData(url) {
       { label: 'second', seconds: 1 },
     ];
   
+    // For each interval
     for (const interval of intervals) {
+      // get how many times the interval fits into the difference in seconds
       const count = Math.floor(diffInSeconds / interval.seconds);
+      // If the interval fits at least once
       if (count >= 1) {
         return `${count} ${interval.label}${count !== 1 ? 's' : ''} ago`;
       }
     }
   
+    // if the date is in the future or something went wrong
     return 'just now';
   };
+  
 
 
-  export const truncate = (str)=>{
-    if(str.length<120)
+  export const truncate = (str, amount)=>{ // trucate data to make sure it fits in card
+    if(str.length<(amount??120))
       {return str;}
-    return str.slice(0,120) + "..."
+    return str.slice(0,(amount??120)) + "..."
   }
+
+  export function formatContent(content) { //remove the =[1233chars] that comes with the article content
+    if (!content) return "";
+    const truncated = content.split("... ")[0];
+    return truncated ? truncated + "..." : content;
+  }
+  

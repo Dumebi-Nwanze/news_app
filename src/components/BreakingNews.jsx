@@ -1,7 +1,10 @@
 import React from 'react'
 import LatestCard from './LatestCard'
+import { useAppState } from '../context/globalStates'
 
-function BreakingNews({latest}) {
+function BreakingNews() {
+const {latest}=useAppState()
+
   return (
     <div className="px-4">
     <div className="px-4 py-4 xl:px-12 xl:py-8 bg-slate-800 rounded-2xl flex flex-col space-y-4  w-full">

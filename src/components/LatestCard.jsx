@@ -1,9 +1,11 @@
 import React from "react";
 import { timeAgo, truncate } from "../utils";
+import { useAppState } from "../context/globalStates";
 
 function LatestCard({ data }) {
+  const {setSelectedArticle} = useAppState()
   return (
-    <div className="flex flex-col min-w-[200px] h-[200px] lg:h-[270px] lg:min-w-[300px] cursor-pointer">
+    <div onClick={()=>{setSelectedArticle(data)}} className="flex flex-col min-w-[200px] h-[200px] lg:h-[270px] lg:min-w-[300px] cursor-pointer">
       <img
         src={data.urlToImage}
         alt=""

@@ -1,7 +1,9 @@
 import React from "react";
 import { navItems } from "../data";
+import { useAppState } from "../context/globalStates";
 
-function SideNav({ setSelected, selected, setPage, setFeed }) {
+function SideNav() {
+  const {selected, setSelected} = useAppState()
   return (
     <nav className="bg-black h-screen w-[15%]  flex-col px-10 hidden xl:flex sticky top-0">
       <div className="py-4  flex items-center justify-center w-full ">

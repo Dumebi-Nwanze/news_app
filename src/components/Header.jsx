@@ -1,9 +1,10 @@
 import React from "react";
 
-import ArrowDown from "./ArrowDown";
 import { navItems } from "../data";
+import { useAppState } from "../context/globalStates";
 
-function Header({ searchText, setSearchText, selected, setSelected, setPage, setFeed }) {
+function Header() {
+  const { searchText, selected, setSelected , searchRef1, searchRef2, handleInput} = useAppState()
   return (
     <div className="">
       <nav className="bg-slate-800  xl:hidden flex flex-col  w-screen">
@@ -25,12 +26,11 @@ function Header({ searchText, setSearchText, selected, setSelected, setPage, set
           </div>
           <div  className="relative transition-all duration-300">
             <input
+            ref={searchRef1}
             placeholder="Search News"
               type="search"
               value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
+            onInput={handleInput}
               className="peer cursor-pointer relative z-10 h-8 w-8 rounded-full focus:border-2 bg-transparent pl-4 outline-none focus:w-full focus:cursor-text  focus:pl-10 focus:pr-4 placeholder:font-bold placeholder:text-xs text-xs"
             />
             <svg
@@ -75,19 +75,18 @@ function Header({ searchText, setSearchText, selected, setSelected, setPage, set
         <div className=" border-2 border-gray-500 py-2 px-4 rounded-full flex space-x-4 ite">
           <img src="/search.png" alt="Search" className="h-6" />
           <input
+          ref={searchRef2}
           type="search"
             placeholder="Search News"
             className="outline-none border-none bg-transparent placeholder:font-bold font-medium"
             value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
+            onInput={handleInput}
           />
         </div>
 
         <div className="flex space-x-2 justify-center items-center pr-8">
           <div className="w-4 h-4">
-            <ArrowDown />
+            <img src="./down-arrow.png" alt="arrow down" className="h-full w-full"/>
           </div>
           <p className="text-xl font-medium">INT</p>
         </div>
